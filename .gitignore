@@ -1,0 +1,12 @@
+obj
+*~
+\#*\#
+.\#*\#
+
+# Comment out the following lines if you want to include the built ROMs in the
+# repository itself.
+
+*.rom
+*.sym
+*.sram
+

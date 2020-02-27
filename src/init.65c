@@ -1,0 +1,7 @@
+.INCLUDE "include/common.inc"
+
+.ORGA $F800
+.SECTION "!InitImage" SIZE 2048 FORCE
+; change this to etinit.bin when you're ready to release
+.INCBIN "ars-init/bin/nullinit.bin"
+.ENDS

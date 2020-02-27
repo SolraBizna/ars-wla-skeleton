@@ -1,0 +1,35 @@
+; This must be at the top of every source file.
+.INCLUDE "include/common.inc"
+
+; the init code jumps to this address, make sure our main function definitely
+; starts there
+.ORGA $8000
+.BANK 0 SLOT 0
+; The exclamation point before the section name forces WLA-DX to include this
+; section even though it appears not to be used. (WLA-DX doesn't know that
+; etinit.bin jumps to this address.)
+.SECTION "!main" FORCE
+main:
+	; Your code goes here!
+
+	; Example code:
+
+	; Start making a square wave in voice 0
+	LDA #$10
+	STA r_VoiceWaveform+0
+	LDA #$10
+	STA r_VoiceVolume+0
+
+	; Sweep from lowish to highish frequencies, forever
+	; (We "accidentally" affect the hardware sweep bits as well)
+-	CLC
+	LDA r_VoiceRateLo+0
+	ADC #$40
+	STA r_VoiceRateLo+0
+	BCC +
+	INC r_VoiceRateHi+0
++	JSR AwaitNMI
+	BRA -
+
+.ENDS
+

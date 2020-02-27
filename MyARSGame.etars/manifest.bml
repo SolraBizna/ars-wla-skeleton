@@ -1,0 +1,5 @@
+board id:ETARS
+  rom name=rom.rom size=32768
+
+information
+  title="My ARS Game"
